@@ -1,0 +1,14 @@
+spring:
+  ai:
+    vectorstore:
+      chroma:
+        client:
+          host: http://localhost
+          port: 38000
+
+
+doc-vec:
+  onnx-tokenizer: D:\jxch-capital\capital-documents-vec\src\main\resources\onnx\onnx_tokenizer.json
+  onnx-model: D:\jxch-capital\capital-documents-vec\src\main\resources\onnx\model.onnx
+  onnx-tmp: D:\jxch-capital\capital-documents-vec\src\main\resources\onnx\tmp
+  collection: TestCollection
