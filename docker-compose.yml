@@ -6,4 +6,16 @@ services:
       - "38000:8000"
     volumes:
       - ./data/chroma:/chroma/chroma
-
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "31434:11434"
+    volumes:
+      - ./data/ollama:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]

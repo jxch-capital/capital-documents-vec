@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.web.client.RestClient;
 
 import java.nio.file.Path;
 import java.util.Map;
@@ -28,6 +30,7 @@ public class DocVecConfig {
     @Value("${doc-vec.collection:collection}")
     private String collection;
 
+    @Primary
     @SneakyThrows
     @Bean(DOC_VEC_EMBEDDING_CLIENT)
     public TransformersEmbeddingClient embeddingClient() {
@@ -43,6 +46,11 @@ public class DocVecConfig {
     @Bean
     public VectorStore chromaVectorStore(@Qualifier(DOC_VEC_EMBEDDING_CLIENT) EmbeddingClient embeddingClient, ChromaApi chromaApi) {
         return new ChromaVectorStore(embeddingClient, chromaApi, collection);
+    }
+
+    @Bean
+    public RestClient.Builder restClient() {
+        return RestClient.builder();
     }
 
 }

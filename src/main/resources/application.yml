@@ -5,7 +5,12 @@ spring:
         client:
           host: http://localhost
           port: 38000
-
+    ollama:
+      base-url: http://localhost:31434
+      chat:
+        options:
+          model: mistral
+          temperature: 0.7
 
 doc-vec:
   onnx-tokenizer: D:\jxch-capital\capital-documents-vec\src\main\resources\onnx\onnx_tokenizer.json
